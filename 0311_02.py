@@ -121,6 +121,34 @@ print('\n----------------元组--------------------\n')
 
 #元组
 
-#del可散户整个元组，不能删除单个元素，元组元素不允许修改
+#del可删除整个元组，不能删除单个元素，元组元素不允许修改
 
-tup=
+tup1=(1,2,5,3,'22233')
+
+print('计算元组测长度--',len(tup1))
+
+print('\n判断某元素是否存在在元组中--',2016 in tup1)
+
+
+#利用内置函数完成元组的长度、最大值、最小值的输出
+tup_good=(2,4,99,0,-1)
+
+#元组的长度
+print('元组的长度-',len(tup_good))
+
+#元组的最大值
+print('最大值-',max(tup_good))
+
+#最小值
+print('最小值-',min(tup_good))
+
+
+
+#列表转元组
+list_zhuan=[1,2,3]
+print('原列表list-',list_zhuan)
+tup_zhuan=tuple(list_zhuan)
+print('转成元组tuple-',tup_zhuan)
+#元组转列表
+tup_re=list(tup_zhuan)
+print('再次转回列表-',tup_re)
