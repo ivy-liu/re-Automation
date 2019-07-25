@@ -54,21 +54,38 @@ print()
 doc_write='.\\test.txt'
 #打开文件夹
 fo=open(doc_write,'w+',encoding='utf-8')#未加上encoding='utf-8'时，查看写入的内容是乱码
-fo.write('大家好，我是lvy')
+fo.write('你好，lvy')
 print('打开方式',fo.mode)
 
 str1=fo.read()
 print('1.文件内容是--',str1)
 
-print(fo.tell()) #打印文件内当前位置
-print(fo.seek(0))#位置移动到最前
-print(fo.tell())
+print('当前位置-',fo.tell()) #打印文件内当前位置
+
+print(fo.seek(0,0))#位置移动到最前
+print('当前位置0-',fo.tell())
+
+print(fo.seek(9))#位置移动到'你好，'后
+print('当前位置9-',fo.tell())
 
 str1=fo.read()
 print('2.文件内容是str1--',str1)
 
 str2=fo.readlines()
 print('文件内容是str2--',str2)
+
 #关闭文件
 fo.close()
 
+'''
+seek() 方法用于移动文件读取指针到指定位置。
+
+1.fileObject.tell()方法告诉文件当前的位置
+2.fileObject.seek(offset[,whence])方法改变当前位置
+offset -- 开始的偏移量，也就是代表需要移动偏移的字节数
+whence：可选，默认值为 0。
+给offset参数一个定义，表示要从哪个位置开始偏移；
+0代表从文件开头开始算起，
+1代表从当前位置开始算起，
+2代表从文件末尾算起。
+'''
