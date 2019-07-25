@@ -1,8 +1,11 @@
 #2018-3-18上午模块文件异常其他
 '''
 'r'：打开只读文件，该文件必须存在
-'w'：打开只写文件，若文件存在则文件长度清为0，即该文件内容会消失。若文件不存在则建立该文件
-'a'：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留
+'w'：打开只写文件，若文件存在则文件长度清为0，即该文件内容会消失。
+     若文件不存在则建立该文件
+'a'：以附加的方式打开只写文件。
+     若文件不存在，则会建立该文件，
+     如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留
 'r+' ： r+w（可读可写，文件若不存在就报错(IOError)）
 'w+' ： w+r（可读可写，若文件存在则文件长度清为零，即该文件内容会消失。若文件不存在则建立该文件）
 'a+' ： a+r（可追加可写，若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留）
@@ -89,3 +92,61 @@ whence：可选，默认值为 0。
 1代表从当前位置开始算起，
 2代表从文件末尾算起。
 '''
+
+#以w方式打开某个文件，通过write和writelines分别写入内容
+new_path='.\\new_file.txt'
+new_file=open(new_path,'w',encoding='utf-8')
+new_file.write('你好，此时write写入\n')
+
+new_file.writelines(['小明\n','小兰\n','小花\n'])#可字符串、可列表
+
+
+# print('尝试')
+# new_file.write(['小明\n','小兰\n','小花\n'])#must be str, not list
+new_file.close()
+
+#以w+方式打开文件，写两行数据，部关闭文件，继续读取文件全部内容
+new_path_01='.\\new_file_01.txt'
+new_file_01=open(new_path_01,'w+',encoding='utf-8')
+new_file_01.writelines(['ivy,哈哈哈,哈哈哈哈\n','ivy,呵呵呵,呵呵呵呵,呵呵呵'])
+new_file_01.seek(0)
+print('打印new_file_01:\n',new_file_01.readline())
+print('打印下一行：\n',new_file_01.readline())
+new_file_01.close() 
+
+print()
+
+
+print('-------------异常处理----------\n')
+
+log_path='.\\file.txt'
+
+# try:
+#     fh=open(log_path,'r')
+#     fh.write('尝试写入')
+# except IOError as e:
+#     print('该文件不存在，且只读权限，写入失败',str(e))
+#     # fh.close()
+# else:#try没有异常时执行else
+#     print('写入成功')
+#     # fh.close()
+
+
+# try:
+#     fh01=open(log_path,'r')
+#     fh01.write('尝试写入')    
+# finally:#无论try是否成功都要执行
+#     print('该文件不存在，且只读权限，写入失败，执行finall')
+    
+
+'''
+random,glob
+'''
+print('\n-----随机数----------')
+import random
+print('拿到一个随机值-',random.choice('abcdefghijklmn'))#随机取这些字母
+
+import glob
+print('\n-----glob----------')
+print(glob.glob('*.txt'))#['new_file.txt', 'new_file_01.txt', 'test.txt']
+
