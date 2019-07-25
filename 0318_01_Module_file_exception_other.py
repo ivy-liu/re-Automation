@@ -20,5 +20,5 @@ from sum import add_two_num
 print(add_two_num(2,2))
 
 print('\n---from 文件名 import 文件名----')
-from re_Automation import sum
-print(sum.add_two_num(2,3))
+from test_folder import test_sum
+print(test_sum.test_add_two_num(2,3))
