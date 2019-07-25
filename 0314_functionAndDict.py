@@ -74,12 +74,16 @@ print()
 #函数
 import unittest
 class MyTest(unittest.TestCase):
-    def print_me_test(str01,str02):
+    def test_print_me_test(str01,str02):
         print('str01-',str01)
         print('str02-',str02)
         print('完毕')
     def test_test():
         print_me_test('sssss','222222222')
+
+
+if __name__=='__main__':
+    unittest.main()
 #pyton内值引用传递，要变都变
 
 print("---------函数花式传值-----------")
