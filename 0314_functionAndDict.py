@@ -127,4 +127,47 @@ def doing():
     for i in (1,2,3):
         counter+=1
 doing()
-print('counter-',counter)
+print('counter-',counter) #counter- 4
+
+print()
+#练习
+print('--练习--')
+x='xiaoqiang'
+def func():
+    x='a'
+    def func2():
+        print('x=',x) #x= a
+    func2()
+func()
+print(x)
+
+
+#range
+print('-------range-------\n')
+range(4)
+range(0,4)
+range(0,4,1)
+#0,1,2,3
+
+range(1,4,-1)
+for i in range(1,4,-1):
+    print('range(1,4,-1):',i)
+    #无值,空
+range(-3,3)
+for i in range(-3,3):
+    print('range(-3,3)',i)#-3,-2,-1,0,1,2
+
+print()
+range(3,-3,1)
+for i in range(3,-3,-1):
+    print('range(3,-3,-1)',i)#3,2,1,0,-1,-2
+
+print()
+
+#切片
+#a,b,c,d
+string='abcd'
+print(string[-1:-5:-1]) #dcba
+
+
+
