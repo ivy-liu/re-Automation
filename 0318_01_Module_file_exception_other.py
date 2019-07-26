@@ -145,8 +145,41 @@ random,glob
 print('\n-----随机数----------')
 import random
 print('拿到一个随机值-',random.choice('abcdefghijklmn'))#随机取这些字母
+print('从列表中随机取值-',random.choice(['apple','pear','banana']))
 
 import glob
 print('\n-----glob----------')
 print(glob.glob('*.txt'))#['new_file.txt', 'new_file_01.txt', 'test.txt']
+#根据指定通配符去匹配
+# print(glob.glob('D:\\P*'))
 
+import os
+print('\n---------和os接口交互---------')
+print('当前目录：',os.getcwd())
+#打印制定目录下所有的文件名（带路径）。统一用 c:\Program Files
+# 提示：os.listdir，join
+#os.listdir(path)
+# 返回指定路径下的文件和文件夹列表。
+# path='.\\'
+path=os.getcwd()
+dirs=os.listdir(path)
+#输出所有文件和文件夹
+for i in dirs:
+     re_path=os.path.join(path,i)
+     print(re_path)
+print()
+print('\n----递归显示目录，目录下文件---')
+
+def readFiles(path):
+     dirs=os.listdir(path)
+     for i in dirs:
+          re_path=os.path.join(path,i)
+          
+          if os.path.isfile(re_path):
+               print(re_path)
+          else:
+               readFiles(re_path)
+          
+print()
+print('---------执行递归函数---------')
+readFiles(os.getcwd())
