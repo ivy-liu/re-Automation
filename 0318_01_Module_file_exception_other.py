@@ -175,7 +175,7 @@ def readFiles(path):
      for i in dirs:
           re_path=os.path.join(path,i)
           
-          if os.path.isfile(re_path):
+          if os.path.isfile(re_path):#isfile判断是不是文件  isdir判断是不是目录 入参都需要绝对路径
                print(re_path)
           else:
                readFiles(re_path)
