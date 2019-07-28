@@ -74,11 +74,11 @@ print()
 #函数
 import unittest
 class MyTest(unittest.TestCase):
-    def test_print_me_test(str01,str02):
+    def test_print_me_test(self,str01,str02):
         print('str01-',str01)
         print('str02-',str02)
         print('完毕')
-    def test_test():
+    def test_test(self):
         print_me_test('sssss','222222222')
 
 
