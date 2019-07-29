@@ -9,7 +9,7 @@ __private_attrs:两个下划线开头，生命该属性为私有，不能在类�
 
 个人觉得python的私有没有什么意义，规则存在，
 但实际通过对象调用类，调用私有方法依然可以使用
-'''
+```
 class Animal:
     def __heshui(self):
         print('动物，喝水')
@@ -27,7 +27,7 @@ new_cat=Cat()
 //new_cat.__heshui()#报错 外部无法访问
 
 new_cat.heshui()#运行正常，打印：动物，喝水
-'''python
+```python
 
 
 
