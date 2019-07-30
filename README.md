@@ -68,6 +68,10 @@ http://localhost/phpmyadmin/index.php
 
 * 数据库插入数据
 ---
+1.连接数据库  
+2.创建游标  
+3.执行cursor.execute(stu_info)，stu_info即SQL语句用''' '''最方便  
+4.cursor.close()  # 关闭游标  con.close()  # 关闭连接  
 ```python
 # 元组插入
 print('----元组插入---')
@@ -85,10 +89,7 @@ con.commit()
 cursor.close()  # 关闭游标
 con.close()  # 关闭连接
 
-# 1.连接数据库
-# 2.创建游标
-# 3.执行cursor.execute(stu_info)，‘stu_info’SQL语句
-# 4.cursor.close()  # 关闭游标  con.close()  # 关闭连接
+
 
 ```
 
