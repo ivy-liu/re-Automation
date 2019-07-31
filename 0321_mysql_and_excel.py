@@ -102,3 +102,41 @@ con.close()  # 关闭连接
 3.执行cursor.execute(stu_info)，‘stu_info’SQL语句
 4.cursor.close()  # 关闭游标  con.close()  # 关闭连接
 '''
+
+
+print('\n-----------excel------------\n')
+# import openpyxl
+from openpyxl.styles import Font,colors,alignment
+from openpyxl import Workbook
+# load_workbook已存在 Workbook不存在可创建,如存在就
+
+import time,os
+
+# os.chdir('D:\\python_code\\re_Automation')#切换目录至
+
+# path='D:\\python_code\\re_Automation\\excel_demo.xlsx'
+    #上方路径切换过了可以直接传值名字，否则传完整路径
+
+#打开excel文件
+wb=Workbook('excel_demo.xlsx')
+# wb=load_workbook(path)
+# 报错zipfile.BadZipFile: File is not a zip file，还没有找到解决方法。。。
+
+wb.create_sheet('testsheet')
+wb.create_sheet('testsheet01')
+# ss=wb.get_sheet_names()#get_sheet_names已弃用 用wb.sheetnames
+# print('获取工作簿中所有工作表名',ss)
+# s1=wb.get_sheet_names()[0]#get_sheet_names已弃用 用wb.sheetnames
+# print('方法1：获取某个工作表名',s1)
+# s2=wb.get_sheet_by_name('sheet1')#get_sheet_by_name已弃用，用wb[sheetname]
+# print('方法2：获取某个工作表名的对象，供后续调用其它方法使用',s2)
+
+print('工作簿中所有工作表名',wb.sheetnames) #返回列表
+sheet01=wb.sheetnames[1]
+print(sheet01.name,sheet01.nrows,sheet01.ncols)
+# https://www.cnblogs.com/ZHANG576433951/p/6821945.html
+
+# #获取单元格数据
+# print('方法1：获取单元格A1值',sheet01['A1'].value)
+# #这个写法的好处是方便for循环取值
+# print('方法2：获取单元格A2值',sheet01.cell(row=2,column=1).value)
