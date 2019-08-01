@@ -68,7 +68,7 @@ except Exception as e:
 
 # 查询数据
 stu_select = '''
-    select *from Student where StdID>5
+    select *from Student where StdID>150
     '''
 try:
     cursor.execute(stu_select)
@@ -114,16 +114,22 @@ import time,os
 
 # os.chdir('D:\\python_code\\re_Automation')#切换目录至
 
-# path='D:\\python_code\\re_Automation\\excel_demo.xlsx'
-    #上方路径切换过了可以直接传值名字，否则传完整路径
+path='D:\\python_code\\re_Automation\\excel_demo.xlsx'
+#上方路径切换过了可以直接传值名字，否则传完整路径
 
-#打开excel文件
-wb=Workbook('excel_demo.xlsx')
+#创建excel文件，操作结束后需要wb.save(path)
+wb=Workbook()
 # wb=load_workbook(path)
 # 报错zipfile.BadZipFile: File is not a zip file，还没有找到解决方法。。。
-
-wb.create_sheet('testsheet')
+ws=wb.create_sheet('testsheet00')
 wb.create_sheet('testsheet01')
+wb.create_sheet('testsheet02')
+print('ws是啥',ws)#ws是啥 <WriteOnlyWorksheet "testsheet01">
+ws1=wb.active
+print('ws1是啥',ws1)#ws1是啥 <Worksheet "Sheet">
+ws2=wb['testsheet01']
+print('ws2是啥',ws2)#ws2是啥 <Worksheet "testsheet">
+
 # ss=wb.get_sheet_names()#get_sheet_names已弃用 用wb.sheetnames
 # print('获取工作簿中所有工作表名',ss)
 # s1=wb.get_sheet_names()[0]#get_sheet_names已弃用 用wb.sheetnames
@@ -132,11 +138,24 @@ wb.create_sheet('testsheet01')
 # print('方法2：获取某个工作表名的对象，供后续调用其它方法使用',s2)
 
 print('工作簿中所有工作表名',wb.sheetnames) #返回列表
-sheet01=wb.sheetnames[1]
-print(sheet01.name,sheet01.nrows,sheet01.ncols)
-# https://www.cnblogs.com/ZHANG576433951/p/6821945.html
 
-# #获取单元格数据
-# print('方法1：获取单元格A1值',sheet01['A1'].value)
-# #这个写法的好处是方便for循环取值
-# print('方法2：获取单元格A2值',sheet01.cell(row=2,column=1).value)
+
+#设置单元格数值
+ws['A1']=123.11
+ws['B1']='你好'
+ws['B2']='ws你好呀，我是小花'
+ws1['a1']='ws1haha'
+ws2['b3']='ws2哈哈哈'
+
+#获取单元格数据
+print('录入单元格A1值',ws['A1'].value)
+print('录入单元格B1值',ws1['a1'].value)
+print('录入单元格B2值',ws2['B3'].value)
+
+#save the file
+wb.save(path)
+
+#切换表格
+# ws=wb.create_sheet('testsheet01')
+# ws1=wb.active
+# ws2=wb['testsheet']
