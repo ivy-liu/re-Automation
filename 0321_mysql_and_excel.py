@@ -124,11 +124,11 @@ wb=Workbook()
 ws=wb.create_sheet('testsheet00')
 wb.create_sheet('testsheet01')
 wb.create_sheet('testsheet02')
-print('ws是啥',ws)#ws是啥 <WriteOnlyWorksheet "testsheet01">
+print('ws是啥',ws)#ws是啥 <Worksheet "testsheet00">
 ws1=wb.active
 print('ws1是啥',ws1)#ws1是啥 <Worksheet "Sheet">
 ws2=wb['testsheet01']
-print('ws2是啥',ws2)#ws2是啥 <Worksheet "testsheet">
+print('ws2是啥',ws2)#ws2是啥 <Worksheet "testsheet01">
 
 # ss=wb.get_sheet_names()#get_sheet_names已弃用 用wb.sheetnames
 # print('获取工作簿中所有工作表名',ss)
@@ -138,19 +138,34 @@ print('ws2是啥',ws2)#ws2是啥 <Worksheet "testsheet">
 # print('方法2：获取某个工作表名的对象，供后续调用其它方法使用',s2)
 
 print('工作簿中所有工作表名',wb.sheetnames) #返回列表
+# 工作簿中所有工作表名 ['Sheet', 'testsheet00', 'testsheet01', 'testsheet02']
 
 
 #设置单元格数值
 ws['A1']=123.11
 ws['B1']='你好'
 ws['B2']='ws你好呀，我是小花'
+# 在下一行追加一行1,2,3
+ws.append([1, 2, 3])
 ws1['a1']='ws1haha'
 ws2['b3']='ws2哈哈哈'
+d = ws2.cell(row=4, column=2, value=10)
 
 #获取单元格数据
 print('录入单元格A1值',ws['A1'].value)
 print('录入单元格B1值',ws1['a1'].value)
 print('录入单元格B2值',ws2['B3'].value)
+print('d-',d.value)
+#方便for循环取值
+print('获取单元格数值b4值',ws2.cell(row=4, column=2).value)
+
+#单元样式设置
+ws1.title='new title'
+print('工作簿中所有工作表名',wb.sheetnames) #返回列表
+ws1.sheet_properties.tabColor="1072BA"
+
+print('获取最大列数：',ws2.max_column)
+print('获取最大行数：',ws2.max_row)
 
 #save the file
 wb.save(path)
