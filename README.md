@@ -109,7 +109,7 @@ ws2.cell(row=4, column=2).value='是10，哈哈哈' #赋值方式3
 ```
 
 切换操作的表  
-ws=wb.create_sheet('testsheet01')
-ws1=wb.active
-ws2=wb['testsheet']
+ws=wb.create_sheet('testsheet01')  
+ws1=wb.active  
+ws2=wb['testsheet']  
   
