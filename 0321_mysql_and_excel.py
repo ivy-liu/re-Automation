@@ -107,8 +107,8 @@ con.close()  # 关闭连接
 print('\n-----------excel------------\n')
 # import openpyxl
 from openpyxl.styles import Font,colors,alignment
-from openpyxl import Workbook
-# load_workbook已存在 Workbook不存在可创建,如存在就
+from openpyxl import Workbook,load_workbook
+# load_workbook已存在 Workbook不存在可创建,原内容清空
 
 import time,os
 
@@ -148,14 +148,15 @@ ws['B2']='ws你好呀，我是小花'
 # 在下一行追加一行1,2,3
 ws.append([1, 2, 3])
 ws1['a1']='ws1haha'
-ws2['b3']='ws2哈哈哈'
-d = ws2.cell(row=4, column=2, value=10)
+ws2['b3']='ws2哈哈哈'  #赋值方式1
+d = ws2.cell(row=4, column=2, value=10)  #赋值方式2
+ws2.cell(row=4, column=2).value='是10，哈哈哈' #赋值方式3
 
 #获取单元格数据
 print('录入单元格A1值',ws['A1'].value)
 print('录入单元格B1值',ws1['a1'].value)
 print('录入单元格B2值',ws2['B3'].value)
-print('d-',d.value)
+print('另一种赋值方式',d.value)
 #方便for循环取值
 print('获取单元格数值b4值',ws2.cell(row=4, column=2).value)
 
@@ -163,14 +164,23 @@ print('获取单元格数值b4值',ws2.cell(row=4, column=2).value)
 ws1.title='new title'
 print('工作簿中所有工作表名',wb.sheetnames) #返回列表
 ws1.sheet_properties.tabColor="1072BA"
+# #设置字体颜色
+myfont=Font(color=colors.RED)
+ws2['b4'].font=myfont  #气吐血，这里是小写font，不是Font
+
 
 print('获取最大列数：',ws2.max_column)
 print('获取最大行数：',ws2.max_row)
+#循环输出单元格里的数据
+for i in range(1,ws2.max_row+1):
+    for j in range(1,ws2.max_column+1):
+        print(ws2.cell(row=i,column=j).value,'\t',end='')
+    print()
 
 #save the file
 wb.save(path)
 
-#切换表格
+#切换操作表格
 # ws=wb.create_sheet('testsheet01')
 # ws1=wb.active
 # ws2=wb['testsheet']

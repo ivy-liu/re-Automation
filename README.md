@@ -89,10 +89,27 @@ con.commit()
 cursor.close()  # 关闭游标
 con.close()  # 关闭连接
 
-
-
 ```
 
+* python操作excel 模块openpyxl
+---
+https://www.cnblogs.com/zeke-python-road/p/8986318.html  
+```python
+# import openpyxl
+from openpyxl.styles import Font,colors,alignment
+from openpyxl import Workbook,load_workbook
+# load_workbook已存在 Workbook不存在可创建,原内容清空
+```
 
+赋值  
+```python
+ws2['b3']='ws2哈哈哈'  #赋值方式1
+d = ws2.cell(row=4, column=2, value=10)  #赋值方式2
+ws2.cell(row=4, column=2).value='是10，哈哈哈' #赋值方式3
+```
 
+切换操作的表  
+ws=wb.create_sheet('testsheet01')
+ws1=wb.active
+ws2=wb['testsheet']
   
