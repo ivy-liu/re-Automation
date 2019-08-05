@@ -1,3 +1,28 @@
+* 线程传参
+---
+```python
+#创建线程，注意语法格式。target为目标函数，args为传递的参数（可选）
+#可传：('t2-小萌',)、args=(i,)i为数组，遍历执行、args=['t4-小小萌',]、args=(m,)把数组当作1个参数
+t1=threading.Thread(target=music)
+t2=threading.Thread(target=book,args=('t2-小萌',))#注意这个逗号 输出： t2-小萌
+m1=['t3-小萌1','t3-小萌2','t3-小萌3',]
+for i in m1:
+    t3=threading.Thread(target=book,args=(i,))
+    t3.start()
+    #输出： t3-小萌2
+    #输出： t3-小萌3
+    #输出： t3-小萌1
+t4=threading.Thread(target=book,args=['t4-小小萌',])#输出： t4-小小萌
+m=[1,2,3,4,5]
+t5=threading.Thread(target=book,args=(m,))#输出： [1, 2, 3, 4, 5]
+
+#启动线程
+t1.start()
+t2.start()
+t4.start()
+t5.start()
+print('抢地主')
+```
 
 * 私有变量和方法
 ---
