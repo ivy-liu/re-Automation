@@ -73,9 +73,11 @@ print('等的花都谢了--')
 #锁
 '''
 join():阻塞线程，直到该线程执行完毕，才会运行后面的代码
-threading.Lock():如果使用RLock，那么acquire和release必须成对出现，
+threading.Lock():同一线程不能连续多次acquire，否则死锁
+threading.RLock():多重锁RLock允许在同一线程中被多次acquire，而Lock却不允许这种情况。
+  如果使用RLock，那么acquire和release必须成对出现，
   即调用了n次acquire，必须调用n次的release才能真正释放所占用的锁
-threading.RLock():多重锁RLock允许在同一线程中被多次acquire。而Lock却不允许这种情况。
+  
 
 好处：确保了某段关键代码只能由⼀个线程从头到尾完整地执⾏
 坏处：由于可以存在多个锁，不同的线程持有不同的锁，并试图获取对⽅持有的锁时，可能会造成死锁。
@@ -126,7 +128,35 @@ c=Consumer('红红')
 c.start()
 # c.join()
 
+#logging
+print('\n-----------logging-----------\n')
 
 
-
-            
+import logging 
+import os
+#指定记录log的文件
+log_path='D:\\python_code\\re_Automation\\honglog.log'
+#指定log格式
+log_format="%(asctime)s %(filename)s [line:%(lineno)d] %(levelnames)s: %(message)s"
+#输出到指定的文件内，如果不写filename和filemode参数则默认打印到console。这里是大写WARNING
+logging.basicConfig(filename=log_path,level=logging.WARNING,
+                    format=log_format,filemode='w')
+#输出具体的日志信息
+logging.warning('warning message 红烧排骨')#这里是小写warning
+logging.error('error message 油焖茄子')
+logging.debug('debug message 红烧肉')
+'''
+logging.basicConfig中个参数的含义如下：
+filename:指定日志文件名
+level:设置同意目录处理器的级别，默认为logging.WARNING。日志级别等级（注意大小写）
+logging.CRITICAL>logging.ERROR>logging.WARNING>logging.INFO>logging.DRITICAL。
+如果设置的日志级别为INFO则会取ta以及ta以上级别的信息
+filemode:指定日志文件的打开模式，'w'或'a'
+format:指定输出的格式和内容，format可以输出好多有用信息：
+  %(asctime)s:打印日志的时间
+  %(levelno)s:打印日志级别的数值
+  %(levelname)s:打印日志级别名称
+  %(lineno)s:打印日志当前行号
+  %(message)s:打印日志信息
+  ...
+'''
