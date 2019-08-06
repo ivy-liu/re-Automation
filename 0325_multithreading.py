@@ -92,8 +92,9 @@ threading.RLock():多重锁RLock允许在同一线程中被多次acquire。而Lo
 '''
 import random
 import threading
+x=0
 class Producer(threading.Thread):
-    def __init__(self):
+    def __init__(self,name):
         threading.Thread.__init__(self)#固定格式
         self.name=name
     def run(self):
@@ -106,21 +107,24 @@ class Producer(threading.Thread):
                 x=x+i
                 print('Producer-%s-现有库存：%d'%(self.name,x))
 class Consumer(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
+    def __init__(self,name):
+        threading.Thread.__init__(self)#固定格式
+        self.name=name
     def run(self):
         global x
         if x>0:  
             for i in range(5):
-                x=x-i
+                x=x-1
                 print('Consumer-%s-现有库存：%d'%(self.name,x))
         else:
             print('没有库存，不再消耗')
 
 p=Producer('小明')
 p.start()
-p.join()
-
+# p.join()
+c=Consumer('红红')
+c.start()
+# c.join()
 
 
 
