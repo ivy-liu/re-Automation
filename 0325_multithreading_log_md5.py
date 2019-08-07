@@ -137,10 +137,11 @@ import os
 #指定记录log的文件
 log_path='D:\\python_code\\re_Automation\\honglog.log'
 #指定log格式
-log_format="%(asctime)s %(filename)s [line:%(lineno)d] %(levelnames)s: %(message)s"
+log_format="%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s: %(message)s"
 #输出到指定的文件内，如果不写filename和filemode参数则默认打印到console。这里是大写WARNING
-logging.basicConfig(filename=log_path,level=logging.WARNING,
-                    format=log_format,filemode='w')
+logging.FileHandler(log_path,encoding='utf-8')
+logging.basicConfig(level=logging.WARNING,
+                    format=log_format,filemode='w')#filename=log_path,
 #输出具体的日志信息
 logging.warning('warning message 红烧排骨')#这里是小写warning
 logging.error('error message 油焖茄子')
@@ -160,3 +161,64 @@ format:指定输出的格式和内容，format可以输出好多有用信息：
   %(message)s:打印日志信息
   ...
 '''
+
+#中文编码问题：
+# 　在logging.FileHandler(path) 中添加指定编码方式 encoding='utf-8' 即可，
+#   logging.FileHandler(path, encoding='utf-8') 
+print('\n-------------log,写到文件，输出到console------------------\n')
+
+
+import logging
+log_path='D:\\python_code\\re_Automation\\lvlog.log'
+#创建一个logger
+logger=logging.getLogger()
+logger.setLevel(logging.INFO)
+
+#创建一个handler，将log写入文件
+fh=logging.FileHandler(log_path,mode='w',encoding='utf-8')
+fh.setLevel(logging.INFO)
+
+#再创建一个handler，将log输出到控制台
+ch=logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+#设置输出格式
+log_format="%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s: %(message)s"
+formatter=logging.Formatter(log_format)
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+
+#把handler添加到logger里
+logger.addHandler(fh)
+logger.addHandler(ch)
+
+logger.error('死了都要爱？再吃个冰棍冷静一下')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#加密算法
+#hash，'散列','哈希'，简单来说就是一种将任意长度的消息压缩到某一固定长度的函数。
+#常见的hash算法有md5和sha1。两者都是从md4算法改进的来(python中的hashlib提供这2种)
+#md5是一种可你的加密算法，目前最牢靠的算法，可对任何字符传加密成一段唯一的固定长度的代码
+#sha1是由美国标准技术局发布的，也是目前最先进的加密技术，是基于md5改进而来
+
