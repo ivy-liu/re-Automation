@@ -139,9 +139,8 @@ log_path='D:\\python_code\\re_Automation\\honglog.log'
 #指定log格式
 log_format="%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s: %(message)s"
 #输出到指定的文件内，如果不写filename和filemode参数则默认打印到console。这里是大写WARNING
-logging.FileHandler(log_path,encoding='utf-8')
-logging.basicConfig(level=logging.WARNING,
-                    format=log_format,filemode='w')#filename=log_path,
+logging.basicConfig(filename=log_path,level=logging.WARNING,
+                    format=log_format,filemode='w')
 #输出具体的日志信息
 logging.warning('warning message 红烧排骨')#这里是小写warning
 logging.error('error message 油焖茄子')

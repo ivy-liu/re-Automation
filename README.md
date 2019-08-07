@@ -1,6 +1,6 @@
 * log写入到文件中文编码问题  
 ---
-logging.basicConfig基本配置，
+1,logging.basicConfig基本配置，
 当 stream 和 filename 同时指定时, stream 被忽略  
 利用 stream 输出到文件便可以解决编码问题, 然而这样一来却也带来了一些问题  
 首先, 文件在程序运行过程中必须始终保持打开状态  
@@ -25,11 +25,11 @@ logging.critical("严重错误信息")
 file.close()
 
 ```
-logging.FileHandler中文编码问题  
+2,logging.FileHandler中文编码问题  
 在logging.FileHandler(path) 中添加指定编码方式 encoding='utf-8' 即可，  
 logging.FileHandler(path, encoding='utf-8')   
 详见D:\python_code\re_Automation\0325_multithreading_log_md5.py  
-![logging.FileHandler.png](D:\python_code\re_Automation\md_pic\logging.FileHandler.png)
+![logging.FileHandler.png](md_pic/logging.FileHandler.png)
 
 * 线程传参
 ---
