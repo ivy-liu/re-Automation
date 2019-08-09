@@ -1,3 +1,40 @@
+* email发送
+---
+已经写好，配置信息就好
+注：QQ邮箱异常ssl相关，暂时不能实现  
+```python
+# 设置变量并调用发送邮件
+from1 = '发送出去的邮箱@163.com这里改上面smtp地址也要改，要记得' #发送出去的邮箱
+to = '接收的邮箱' #接收的邮箱
+# 接收的邮件地址
+title = '19-54 title python 全栈自动化测试 文件 行不行 图片'
+content = 'content正文 金马奖 金鸡奖 杨天宝'
+attach = 'D:\\python_code\\re_Automation\\excel_demo.xlsx'#附件-文件
+pic = 'D:\\python_code\\re_Automation\\md_pic\\logging.FileHandler.png'#附件-图片
+print('-执行-')
+
+try:
+    smtpObj = SendMail()
+    smtpObj.send_mail(from1, to, title, content, type='plain', attach=attach, pic=pic)
+    print("邮件发送成功")
+except smtplib.SMTPException as ex:
+    print("Error: 无法发送邮件",ex)
+```
+* DES加密
+---
+语法格式：  
+pyDes.des(key,[mode],[IV],[pad],[padmode])  
+
+key:加密密钥，长度只能为8，必选  
+mode:加密方式。ECB(默认)、CBC(安全性好于前者)  
+IV:初始字节数(长度只能为8位)，如果你选择的加密方式为CBC就必须有这个参数，否则可以没有  
+pad:加密时，将该字符添加到数据的结尾；解密时，将删除从最后一个往前的8位  
+    如果被加密的数据不是8 bytes的倍数，则pad的数量只能为单数  
+    如果被告密的数据是8 bytes的倍数，则无所谓  
+padmode:PAD_NORMAL(可有pad参数)  
+        PAD_PKCS5(不能有pad参数)  
+
+
 * log写入到文件中文编码问题  
 ---
 1,logging.basicConfig基本配置，
