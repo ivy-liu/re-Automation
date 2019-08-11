@@ -1,0 +1,60 @@
+[
+  {
+    "description": "get接口-简易-模拟获取书记信息接口，get请求和相应，返回json描述，有木有都可以",
+    "request": {
+      "method": "get",
+      "uri": "/book_sim"
+    },
+    "response": {
+      "json": {
+        "error_code": 0,
+        "reason": "successed",
+        "name": "返回来自moco",
+        "price": 666
+      }
+    }
+  },
+  {
+    "description": "get接口-模拟获取书记信息接口，get请求和相应，返回json描述，有木有都可以",
+    "request": {
+      "method": "get",
+      "uri": "/book_info",
+      "queries": {
+        "bookname": "接口来自moco",
+        "checkstatus": "on"
+      }
+    },
+    "response": {
+      "json": {
+        "error_code": 0,
+        "reason": "successed",
+        "name": "返回来自moco",
+        "price": 666
+      },
+      "status": 200
+    }
+  },
+  {
+    "description": "post接口-模拟登陆接口post_form，入参form形式，返回json数据",
+    "request": {
+      "method": "post",
+      "uri": "/login1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "forms": {
+        "username": "xiaoming",
+        "pwd": "123456"
+      }
+    },
+    "response": {
+      "json": {
+        "error_code": 0,
+        "reason": "successed",
+        "username": "xiaoming",
+        "chectstatus": "on"
+      },
+      "status": 200
+    }
+  }
+]
