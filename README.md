@@ -1,14 +1,15 @@
 * moco
 ---
 执行.bat文件，录入json文件名即可  
-修改接口使用json文件修改  
----
+修改接口使用json文件修改 
+ 
 headers：请求头，根据是 form还是 json 格式的请求来填写   
  form格式 'Content-Type':'application/x-www-form-urlencoded'   
  json 格式 'Content-Type':'application/json'  
 forms：指定请求参数格式以及数据。  
-对应 headers 里的 content-type，如果是 form 格式则关键字为 forms；  
-如果是 json 格式则关键字改为 json 即可  
+对应 headers 里的 content-type，  
+如果是 form 格式则关键字为 forms；  
+如果是 json 格式则关键字改为 json    
 
 * email发送
 ---
