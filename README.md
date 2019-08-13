@@ -1,3 +1,23 @@
+* 运行的几种方式，根据实际情况选择一种运行即可，之前用pycharm自带单个or多个操作
+---
+```python
+#1、一次全部运行 
+unittest.main() 
+#2、TestSuite 测试套件：可自由组合测试 case，常用的方法是 addTest
+
+suite = unittest.TestSuite() 
+suite.addTest(TestAdd("test_01_add")) #添加测试用例方法名 
+#TextTestRunner 测试执行，就是来执行我们的脚本，常用方法是 run 
+#自动找 test 开头的进行运行 
+runner = unittest.TextTestRunner(verbosity=2) 
+runner.run(suite) 
+
+#3、通过添加类名来运行 
+
+all_suite=unittest.makeSuite(TestAdd) #添加类名 
+runner = unittest.TextTestRunner(verbosity=2) 
+runner.run(all_suite)
+```
 * moco
 ---
 执行.bat文件，录入json文件名即可  
