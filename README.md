@@ -6,11 +6,11 @@ unittest.main()
 #2、TestSuite 测试套件：可自由组合测试 case，常用的方法是 addTest
 
 suite = unittest.TestSuite() 
-suite.addTest(TestAdd("test_01_add")) #添加测试用例方法名 
+suite.addTest(TestAdd("test_01_add")) #添加测试用例方法名,测试类名-方法名 
 #TextTestRunner 测试执行，就是来执行我们的脚本，常用方法是 run 
 #自动找 test 开头的进行运行 
-runner = unittest.TextTestRunner(verbosity=2) 
-runner.run(suite) 
+runner = unittest.TextTestRunner(verbosity=2) #verbosity=2打印调试信息的详细度
+runner.run(suite)  
 
 #3、通过添加类名来运行 
 
