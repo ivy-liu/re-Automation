@@ -65,6 +65,7 @@ data = {
     "username": "xiaoming",
     "pwd": "123456"
 }
+
 print("POST请求参数=", data)
 
 
@@ -76,3 +77,7 @@ print("POST接口的响应时间=", r.elapsed.total_seconds(), '秒')
 
 json_r = r.json()
 print("POST响应结果（转为python类型，供后续使用）=", json_r)
+
+
+
+# json.dump( )是对json文件的读写操作，而json.dumps( ）是对json数据的操作
