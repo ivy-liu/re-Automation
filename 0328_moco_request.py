@@ -155,8 +155,8 @@ class MyTest(unittest.TestCase):
 #1、一次全部运行 unittest.main()
 #2、TestSuite 测试套件：可自由组合测试 case，常用的方法是 addTest
 suite=unittest.TestSuite()
-suite.addTest(MyTest('test_m1'))
-suite.addTest(MyTest('test_m2'))
+# suite.addTest(MyTest('test_m1'))
+# suite.addTest(MyTest('test_m2'))
 suite.addTest(MyTest('test_m3'))
 runner=unittest.TextTestRunner(verbosity=2)
 runner.run(suite)
@@ -167,5 +167,16 @@ runner.run(suite)
 # runner.run(all_suite)
 
 
+import sys
+sys.path.append('..')
+from tools.getResponse import HttpRequestResponse
 
-
+# get
+new_get = HttpRequestResponse()
+url = 'http://localhost:12306/book_info'
+params = {
+    "bookname": "接口来自moco",
+    "checkstatus": "on"
+}
+get_json = new_get.get(url, params=params)
+print("get_json---", get_json)
