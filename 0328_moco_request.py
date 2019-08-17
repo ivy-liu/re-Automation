@@ -156,8 +156,8 @@ class MyTest(unittest.TestCase):
 #2、TestSuite 测试套件：可自由组合测试 case，常用的方法是 addTest
 suite=unittest.TestSuite()
 suite.addTest(MyTest('test_m1'))
-# suite.addTest(MyTest('test_m2'))
-# suite.addTest(MyTest('test_m3'))
+suite.addTest(MyTest('test_m2'))
+suite.addTest(MyTest('test_m3'))
 runner=unittest.TextTestRunner(verbosity=2)
 runner.run(suite)
 
@@ -169,4 +169,3 @@ runner.run(suite)
 
 
 
-18
