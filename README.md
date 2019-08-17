@@ -1,9 +1,9 @@
 * 断言
 ---
-https://docs.python.org/3.3/library/unittest.html?highlight=unittest
+https://docs.python.org/3.3/library/unittest.html?highlight=unittest  
 unittest类中的断言方法：  
 ![断言方法.png](md_pic/断言方法.png)
-
+  
 * 运行的几种方式，根据实际情况选择一种运行即可，之前用pycharm自带单个or多个操作
 ---
 ```python
