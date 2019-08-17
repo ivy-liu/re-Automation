@@ -18,7 +18,7 @@ all_suite=unittest.makeSuite(TestAdd) #添加类名
 runner = unittest.TextTestRunner(verbosity=2) 
 runner.run(all_suite)
 ```
-* moco
+* moco http://localhost:12306
 ---
 执行.bat文件，录入json文件名即可  
 修改接口使用json文件修改 
