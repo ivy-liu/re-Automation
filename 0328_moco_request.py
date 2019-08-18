@@ -173,8 +173,8 @@ class MyTest(unittest.TestCase):
 suite=unittest.TestSuite()
 # suite.addTest(MyTest('test_m1'))
 # suite.addTest(MyTest('test_m2'))
-# suite.addTest(MyTest('test_m3'))
-suite.addTest(MyTest('test_m4'))
+suite.addTest(MyTest('test_m3'))
+# suite.addTest(MyTest('test_m4'))
 runner=unittest.TextTestRunner(verbosity=2)
 runner.run(suite)
 
