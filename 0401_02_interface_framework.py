@@ -40,3 +40,7 @@ class InterfaceTest:
 接口字段定义
 it=InterfaceTest()
 it.interface_test(入参列表)
+
+
+
+'''
