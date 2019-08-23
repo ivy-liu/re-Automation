@@ -3,7 +3,7 @@
 主程序入口
 遍历接口，发送请求，接受响应，判断结果
 保存结果（生成报告）
-发送email
+发送email 
 log日志
 ================
 项目根目录
@@ -37,10 +37,21 @@ class InterfaceTest:
 
             else:
         else:
-接口字段定义
-it=InterfaceTest()
-it.interface_test(入参列表)
 
 
+class RunTestCase:
+    def run(self):
+        打开excel
+        for i in range(2，最大行rowmax+1):
+            if 判断是否可执行 
+                continue
+            
+            取到excel数值
+            num=table.cell(row=i,column=1),value.replace('\n','').replace('\r','')
+            调用InterfaceTest interface_test 传参，
+            接收返回状态码，响应
 
+            接口字段定义
+            it=InterfaceTest()
+            it.interface_test(入参列表)
 '''
