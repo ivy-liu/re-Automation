@@ -121,4 +121,4 @@ driver.find_element_by_xpath("//input[contains(@placeholder,'搜索')]").click()
 time.sleep(5)
 
 #text()
-driver.find_element_by_xpath("//*[@id='app']") 
+driver.find_element_by_xpath("//*[@id='app']") 3
