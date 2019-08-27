@@ -30,8 +30,8 @@ driver.set_window_size(1333,888)
 # #刷新
 # driver.refresh()
 # time.sleep(5)
-driver.get('https://www.lizhi.fm/user/2525632519289351212')
-print('窗口标题是-',driver.title)
+# driver.get('https://www.lizhi.fm/user/2525632519289351212')
+# print('窗口标题是-',driver.title)
 
 
 # time.sleep(5)
@@ -40,7 +40,7 @@ print('窗口标题是-',driver.title)
 # time.sleep(5)
 # driver.forward()#前进
 
-time.sleep(5)
+# time.sleep(5)
 
 
 #关闭单个窗口-close
@@ -90,23 +90,25 @@ time.sleep(5)
 # //标签名[@属性名=属性值] 或者 //*[@属性名=属性值]
 # 区别在于是否有指定的标签
 
-#绝对定位
-driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/div[1]/a/img").click()
+# #绝对定位
+# driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/div[1]/a/img").click()
 
-time.sleep(5)
+# time.sleep(5)
 
 # #利用元素属性定位
 # driver.find_element_by_xpath(".//*[@id='js-obsBtn']").click()
 # time.sleep(5)
 
-#层级和属性结合
-driver.find_element_by_xpath("//*[@id='promoRadio']/div[3]/ul/li[1]/a/img").click()
-time.sleep(5)
+# #层级和属性结合
+# driver.find_element_by_xpath("//*[@id='promoRadio']/div[3]/ul/li[1]/a/img").click()
+# time.sleep(5)
 
+
+# driver.get('https://www.guokr.com/')
 #使逻辑运算符 这个木有
-# driver.find_element_by_xpath(".//*[@class='audioName'and@class='form-control']")
+# driver.find_element_by_xpath(".//*[@class='more'and@href='https://www.guokr.com/zone/#special']").click()
 
-driver.get('https://www.guokr.com/')
+# driver.get('https://www.guokr.com/')
 
 # driver.get('http://xqtesting.com/')
 
@@ -115,10 +117,90 @@ driver.get('https://www.guokr.com/')
 # driver.find_element_by_xpath("//input[starts-with(@id,'nice')]")
 # driver.find_element_by_xpath("//input[ends-with(@id,'nice')]")
 
-#查找input标签 placeholder属性中包含'搜索'关键字的页面元素
-driver.find_element_by_xpath("//input[contains(@placeholder,'搜索')]").click()#选中搜索连输入框
-# driver.find_element_by_xpath("//span[contains(@class,'styled__ImageFilterMask-sc-1mpyx4-1 gKJlUN')]")
-time.sleep(5)
+# #查找input标签 placeholder属性中包含'搜索'关键字的页面元素
+# driver.find_element_by_xpath("//input[contains(@placeholder,'搜索')]").click()#选中搜索连输入框
+# time.sleep(5)
 
 #text()
-driver.find_element_by_xpath("//*[@id='app']") 3
+# driver.get('https://www.guokr.com/')
+# driver.find_element_by_xpath("//*[@class='styled__AccountWrap-sc-16f3awt-0 jtkvlE']/li[text()='注册']").click()
+# driver.find_element_by_xpath("//*[@id='siteNav']/a[text()='注册']").click()
+# time.sleep(5)
+
+'''
+* 代表任意标签，没有指定标签的时候使用
+. 代表选区当前节点
+.. 代表选区当前节点的父节点
+
+'''
+
+'''
+#text :获取元素文本
+# driver.get('https://www.guokr.com/institute')
+driver.implicitly_wait(5)
+# textvalue=driver.find_element_by_class_name("layout__Skeleton-zgzfsa-3 styled__InfoSummaryWrap-w0pb7j-10 gcAVkH").find_element_by_xpath("ul/li[3]/a").text
+textvalue=driver.find_element_by_xpath("//*[@class='layout__Skeleton-zgzfsa-3 styled__InfoLabelWrap-w0pb7j-6 jSKFQp']/span[1]").text
+print('textvalue--',textvalue) #textvalue-- 科学人
+time.sleep(5)
+
+#tag_name :获取元素标签  神奇 没有这个方法了
+tagname=driver.find_element_by_xpath("//*[@class='layout__Skeleton-zgzfsa-3 styled__InfoLabelWrap-w0pb7j-6 jSKFQp']/span[1]").tag_name
+print('tagname--',tagname) #tagname-- span
+time.sleep(5)
+
+#is_displayed()判断元素是否存在  这个方法有毛病，存在返回true，不存在就报错过不去了
+r=driver.find_element_by_xpath("//*[@class='styled__AccountWrap-sc-16f3awt-0 jtkvlE']/li[text()='注册']").is_displayed()
+print(r)
+time.sleep(5)
+
+#get_attribute()：获取元素的其他属性
+getAttribute=driver.find_element_by_xpath("//*[@class='layout__Skeleton-zgzfsa-3 styled__InfoLabelWrap-w0pb7j-6 jSKFQp']/span[1]").get_attribute('outerHTML')
+print('get_attribute--',getAttribute) #get_attribute-- <span>科学人</span>
+time.sleep(5)
+'''
+
+
+#css定位 不好用 记不住 以后不考虑这个东西
+# driver.find_element_by_css_selector('#words')
+
+
+
+driver.get('https://form.teambition.net/f/xtqUHj?x_field_1=demo_tour')
+driver.implicitly_wait(5)
+
+#一组元素的定位
+#cheeckbox 复选框
+# inputs=driver.find_elements_by_tag_name('input')
+# for input in inputs:
+#     if input.get_attribute('type')=='checkbox':
+#         input.click()
+# time.sleep(5)
+# driver.quit()
+
+# driver.find_element_by_class_name("select2-selection__rendered").click()
+# time.sleep(3)
+# driver.find_element_by_xpath("/html/body/span/span/span[2]/ui/li[4]").click()#选中id结尾lCVp
+# time.sleep(3)
+# driver.find_element_by_xpath(".//*[@id='select2-entry_field_15-result-jhi2-cmuo']").click()
+# #不通
+
+
+# #下拉框 可以正常使用
+# from selenium.webdriver.support.ui import Select
+# # Select(driver.find_element_by_id("entry_field_10")).select_by_index(1)#下表从0开始
+# # Select(driver.find_element_by_id('entry_field_10')).select_by_value('2Nh7')
+# Select(driver.find_element_by_id('entry_field_10')).select_by_visible_text('300+')
+
+
+
+
+
+
+
+
+
+
+
+
+time.sleep(5)
+driver.quit()
