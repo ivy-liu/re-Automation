@@ -136,14 +136,15 @@ time.sleep(5)
 
 '''
 #text :获取元素文本
-# driver.get('https://www.guokr.com/institute')
+
+driver.get('https://www.guokr.com/')
 driver.implicitly_wait(5)
 # textvalue=driver.find_element_by_class_name("layout__Skeleton-zgzfsa-3 styled__InfoSummaryWrap-w0pb7j-10 gcAVkH").find_element_by_xpath("ul/li[3]/a").text
 textvalue=driver.find_element_by_xpath("//*[@class='layout__Skeleton-zgzfsa-3 styled__InfoLabelWrap-w0pb7j-6 jSKFQp']/span[1]").text
 print('textvalue--',textvalue) #textvalue-- 科学人
 time.sleep(5)
 
-#tag_name :获取元素标签  神奇 没有这个方法了
+#tag_name :获取元素标签
 tagname=driver.find_element_by_xpath("//*[@class='layout__Skeleton-zgzfsa-3 styled__InfoLabelWrap-w0pb7j-6 jSKFQp']/span[1]").tag_name
 print('tagname--',tagname) #tagname-- span
 time.sleep(5)
@@ -168,7 +169,21 @@ time.sleep(5)
 driver.get('https://form.teambition.net/f/xtqUHj?x_field_1=demo_tour')
 driver.implicitly_wait(5)
 
+
+
 #一组元素的定位
+# 先把一组元素识别出来，然后可以根据实际需要进行 for 来定位某个元素。
+# 用到的方法为 find_elements_by_xxx
+
+# #下拉框 可以正常使用
+from selenium.webdriver.support.ui import Select
+# # Select(driver.find_element_by_id("entry_field_10")).select_by_index(1)#下表从0开始
+# # Select(driver.find_element_by_id('entry_field_10')).select_by_value('2Nh7')
+# Select(driver.find_element_by_id('entry_field_10')).select_by_visible_text('300+')
+# #xpath方法
+# driver.find_element_by_xpath(//*[@id='entry_field_10']/option[2]).click()
+
+
 #cheeckbox 复选框
 # inputs=driver.find_elements_by_tag_name('input')
 # for input in inputs:
@@ -177,24 +192,21 @@ driver.implicitly_wait(5)
 # time.sleep(5)
 # driver.quit()
 
-# driver.find_element_by_class_name("select2-selection__rendered").click()
-# time.sleep(3)
-# driver.find_element_by_xpath("/html/body/span/span/span[2]/ui/li[4]").click()#选中id结尾lCVp
-# time.sleep(3)
-# driver.find_element_by_xpath(".//*[@id='select2-entry_field_15-result-jhi2-cmuo']").click()
-# #不通
+#非标准下拉框
+# e=driver.find_element(定位到ul)
+# e.find_element(定位到li).click()
+driver.find_element_by_class_name("select2-selection__rendered").click()
+print('激活下拉菜单')
+driver.implicitly_wait(5)
 
+driver.find_element_by_xpath('//*[@id="select2-entry_field_15-results"]/li[5]').click()
+print('市场活动策划')
 
-# #下拉框 可以正常使用
-# from selenium.webdriver.support.ui import Select
-# # Select(driver.find_element_by_id("entry_field_10")).select_by_index(1)#下表从0开始
-# # Select(driver.find_element_by_id('entry_field_10')).select_by_value('2Nh7')
-# Select(driver.find_element_by_id('entry_field_10')).select_by_visible_text('300+')
+drop_down=driver.find_element_by_id("select2-entry_field_15-results")#ul的id
+drop_down.find_element_by_xpath("//li[6]").click()
+print('销售流程管理')
 
-
-
-
-
+driver.find_element_by_xpath("html/body/div[1]/div[3]/div[1]/img").click()#收回下拉菜单
 
 
 
