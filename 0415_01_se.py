@@ -192,22 +192,37 @@ from selenium.webdriver.support.ui import Select
 # time.sleep(5)
 # driver.quit()
 
-#非标准下拉框
-# e=driver.find_element(定位到ul)
-# e.find_element(定位到li).click()
-driver.find_element_by_class_name("select2-selection__rendered").click()
-print('激活下拉菜单')
-driver.implicitly_wait(5)
+# #非标准下拉框
+# # e=driver.find_element(定位到ul)
+# # e.find_element(定位到li).click()
+# driver.find_element_by_class_name("select2-selection__rendered").click()
+# print('激活下拉菜单')
+# driver.implicitly_wait(5)
 
-driver.find_element_by_xpath('//*[@id="select2-entry_field_15-results"]/li[5]').click()
-print('市场活动策划')
+# driver.find_element_by_xpath('//*[@id="select2-entry_field_15-results"]/li[5]').click()
+# print('市场活动策划')
 
-drop_down=driver.find_element_by_id("select2-entry_field_15-results")#ul的id
-drop_down.find_element_by_xpath("//li[6]").click()
-print('销售流程管理')
+# drop_down=driver.find_element_by_id("select2-entry_field_15-results")#ul的id
+# drop_down.find_element_by_xpath("//li[6]").click()
+# print('销售流程管理')
 
-driver.find_element_by_xpath("html/body/div[1]/div[3]/div[1]/img").click()#收回下拉菜单
+# driver.find_element_by_xpath("html/body/div[1]/div[3]/div[1]/img").click()#收回下拉菜单
 
+
+
+
+#操作百度
+driver.get('https://www.baidu.com/')
+driver.find_element_by_xpath("//*[@id='u1']/a[7]").click()
+print('点击登陆按钮')
+driver.find_element_by_id('TANGRAM__PSP_10__footerULoginBtn').click()
+print('选择账号密码登陆')
+driver.find_element_by_id("TANGRAM__PSP_10__userName").send_keys("百度账号")
+print('手机号录入')
+driver.find_element_by_id("TANGRAM__PSP_10__password").send_keys('百度密码')
+print('密码录入')
+driver.find_element_by_id('TANGRAM__PSP_10__submit').click()
+print('点击确定，切换手机号验证')
 
 
 
