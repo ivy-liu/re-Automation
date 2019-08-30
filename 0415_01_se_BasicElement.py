@@ -1,6 +1,8 @@
 from selenium import webdriver
 import time
 
+#selenium的基础元素、复选、下拉
+
 #创建se驱动
 driver=webdriver.Chrome()
 # from selenium import webdriver
