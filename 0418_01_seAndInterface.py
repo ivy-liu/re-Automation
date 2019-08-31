@@ -1,4 +1,13 @@
-#cookies(传值、profile) ，上传下载，参数化，视频播放 ，日期元素，截图
+#cookies(传值、profile) ，
+# 上传下载，
+# 参数化，
+# 视频播放 ，
+# 日期元素，
+# 截图，
+# 表格
+#https
+#等待方式（强制、隐形-页面加载、显性-元素加载）
+#饼状图
 
 
 from selenium import webdriver
@@ -114,34 +123,38 @@ driver.find_element('link text','下载').click()
 time.sleep(5)#需要时间长一点，怕下载不完
 #下载在d:\\
 '''
-#参数化 https://www.cnblogs.com/hanxiaobei/p/7340429.html
-#文件txt
-import codecs
-#打开文件utf-8
-source=codecs.open('test_folder\parameter.txt','r','utf-8')
-context=source.readlines()#多行读取
 
-value01=list(context)
-print('value01-',value01)#value01- ['18352543210\r\n', '啥啥密码123']
 
-value03=[]
-value03.extend(context)
-print('value03-',value03)#value03- ['18352543210\r\n', '啥啥密码123']
+# #参数化 https://www.cnblogs.com/hanxiaobei/p/7340429.html
+# #文件txt
+# import codecs
+# #打开文件utf-8
+# source=codecs.open('test_folder\parameter.txt','r','utf-8')
+# context=source.readlines()#多行读取
 
-source=codecs.open('test_folder\parameter.txt','r','utf-8')
-value02 =[]
-while True:
-    context = source.readline()#按行读取
-    value02.append(context)
-    if len(context) ==0:
-        break
-print('readline格式:',type(value02))
-print('value02-',value02)#['18352543210\r\n', '啥啥密码123', '']
+# value01=list(context)
+# print('value01-',value01)#value01- ['18352543210\r\n', '啥啥密码123']
 
-source=codecs.open('test_folder\parameter.txt','r','utf-8')
-context = source.read()#一次性读取，赋值给字符串
-value04=list(context)
-print('value04-',value04)#['1', '8', '3', '5', '2', '5', '4', '3', '2', '1', '0', '\r', '\n', '啥', '啥', '密', '码', '1', '2', '3']
+# value03=[]
+# value03.extend(context)
+# print('value03-',value03)#value03- ['18352543210\r\n', '啥啥密码123']
+
+# source=codecs.open('test_folder\parameter.txt','r','utf-8')
+# value02 =[]
+# while True:
+#     context = source.readline()#按行读取
+#     value02.append(context)
+#     if len(context) ==0:
+#         break
+# print('readline格式:',type(value02))
+# print('value02-',value02)#['18352543210\r\n', '啥啥密码123', '']
+
+# source=codecs.open('test_folder\parameter.txt','r','utf-8')
+# context = source.read()#一次性读取，赋值给字符串
+# value04=list(context)
+# print('value04-',value04)#['1', '8', '3', '5', '2', '5', '4', '3', '2', '1', '0', '\r', '\n', '啥', '啥', '密', '码', '1', '2', '3']
+
+
 
 #写在字典里
 # for username,passwd in info.items():
@@ -152,6 +165,7 @@ print('value04-',value04)#['1', '8', '3', '5', '2', '5', '4', '3', '2', '1', '0'
 # D:\python_code\re_Automation\0321_mysql_and_excel.py
 # 写完就忘。。。想死！
 
+'''
 #视频播放 http://videojs.com/
 driver=webdriver.Chrome()
 driver.implicitly_wait(5)
@@ -183,14 +197,82 @@ time.sleep(5)
 # #另一种方法
 # js='document.getElementById("txtBeginDate").value="2019-09-09"'
 # driver.execute_script(js)
-
+'''
 
 #截图
 # driver.get_screenshot_as_file("保存的路径地址")
 
+'''
 #表格
+driver=webdriver.Chrome()
+driver.get('file:///D:/python_code/re_Automation/test_folder/table.html')
+table=driver.find_element_by_xpath("html/body/table/tbody")
 
+# table的总行数，包括标题
+table_rows=table.find_elements('tag name','tr')
+print('总行数-',len(table_rows))#总行数- 4
 
+#table的总列数
+table_cols=table_rows[0].find_elements('tag name','td')
+print('总列数-',len(table_cols))#总列数- 3
+
+#获取某单元格的文本，下标取值
+row2_col2=table_rows[1].find_elements('tag name','td')[1].text
+print('第二行第二列-',row2_col2)#第二行第二列- row 2, cell 2
+'''
 
 
 #https
+#一般情况不需要处理，特殊https需要处理
+#对于 firefox： 
+# profile = webdriver.FirefoxProfile() 
+# profile.accept_untrusted_certs = True 
+# driver = webdriver.Firefox(firefox_profile=profile) 
+# driver.get('https://www.cacert.org/') 
+# driver.close()
+#chrome:
+option=webdriver.ChromeOptions()
+option.add_argument('--ignore-certificate-errors')
+driver=webdriver.Chrome(chrome_options=option)
+driver.get('https://www.cacert.org/')
+time.sleep(10)
+
+
+'''
+#等待方式
+#显性等待-until、until_not
+from selenium.webdriver.support.wait import WebDriverWait#等元素加载，显性等待
+WebDriverWait(driver,5).until(lambda diver:driver.find_element('link text','退出'))
+'''
+
+#生成饼状图
+from openpyxl.chart import PieChart,Reference
+from openpyxl import load_workbook
+import os
+os.chdir('D:\\python_code\\re_Automation\\test_folder\\testcase_study.xlsx')
+
+def pie_chert(wb):
+    table=wb.get_sheet_by_name(wb.get_sheet_by_name()[0])
+
+    #生成饼图对象
+    pie=PieChart()
+    #图的标题
+    pie.title='接口测试统计'
+    #获取标签 第1列，2行到3行
+    labels=Reference(table,min_col=1,min_row=2,max_col=1,max_row=3)
+    # 获取数据，这里需要注意，上面必须多取1行空的，excel系列导致   
+    # 第2列1到3行，实际：第2列2到3行
+    data=Reference(table,min_col=2,min_row=1,max_col=2,max_row=3)
+
+    #添加数据和标签到图表里
+    pie.add_data(data,titles_from_data=True)
+    pie.set_categories(labels)
+
+    #添加图表到sheet里
+    table.add_chart(pie,'A10')
+
+    #保存excel
+    wb.save('D:\\python_code\\re_Automation\\test_folder\\testcase_study.xlsx')
+
+wb=load_workbook('D:\\python_code\\re_Automation\\test_folder\\testcase_study.xlsx')
+pie_chert(wb)
