@@ -13,14 +13,32 @@ from tools.HTMLTestRunner_CN_Chart_Screen import HTMLTestRunner
 
 class TestSearch(unittest.TestCase):
     """测试类"""
+    
+    # 每次执行1个用例时都会执行一次这个，如果想只执行一次即设置成类方法
+    # @classmethod 类方法（不需要实例化类就可以被类本身调用）
+    # def setUp(cls):
+        # cls.driver=webdriver.Chrome()
+        # cls.driver.implicitly_wait(5)
+        # cls.base_url='http://www.xqtesting.com'
+    # 每次执行1个用例时都会执行一次这个，如果想只执行一次即设置成类方法
+    # @classmethod 类方法（不需要实例化类就可以被类本身调用）
+    # def tearDown(cls):
+    #     time.sleep(5)
+    #     cls.driver.quit()
+    # 其他地方依旧使用self，不需要cls
+    #
+
     def setUp(self):
         #每执行case都保持初始状态
         self.driver=webdriver.Chrome()
         self.driver.implicitly_wait(5)
         self.base_url='http://www.xqtesting.com'
+
+    # 每次执行1个用例时都会执行一次这个，如果想只执行一次即设置成类方法
     def tearDown(self):
         time.sleep(5)
         self.driver.quit()
+
     def test_01_search(self):
         """测试搜索的演示01"""
         self.driver.get(self.base_url)
