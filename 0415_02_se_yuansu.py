@@ -4,7 +4,7 @@ driver=webdriver.Chrome()
 driver.set_window_size(1333,888)
 
 
-#弹窗、frame、多窗口、屏幕滚动、js操作、断言、
+#弹窗、frame、多窗口、屏幕滚动、js操作、断言、下载
 
 
 
@@ -279,4 +279,31 @@ except Exception as e:
         print('有问题',e)
 
 time.sleep(5)
+driver.quit()
+
+
+
+#下载
+from selenium import webdriver
+from time import sleep
+
+profile_ff = r"C:\Users\Administrator\AppData\Roaming\Mozilla\Firefox\Profiles\x1pgtgpj.default"
+
+url = r'http://www.xqtesting.com/py_auto_homework8/se_class_demo/demo.html'
+
+profile = webdriver.FirefoxProfile(profile_ff)
+
+#指定下载路径
+profile.set_preference('browser.download.dir', 'd:\\')
+#设置成 2 表示使用自定义下载路径；设置成 0 表示下载到桌面；设置成 1 表示下载到默认路径
+profile.set_preference('browser.download.folderList', 2)
+#在开始下载时是否显示下载管理器
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+#对所给出文件类型不再弹出框进行询问
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/zip')
+
+driver = webdriver.Firefox(profile)
+driver.get(url)
+driver.find_element('link text','点我下载').click()
+sleep(10)
 driver.quit()

@@ -36,3 +36,41 @@ selectable()
   ]
 }
 '''
+
+
+
+
+import requests
+'''在登陆模块创建一个全局session，在其他接口操作时带入登陆时的session，保持session的一致性'''
+s = requests.Session()#定义一个全局session
+class testlogin():
+  login_url = "http://api-xxxxxx/api/Account/Login"
+  username = "xxxxx"
+  password = xxxxx
+  def test_login(self):
+  data ={
+    "UserName" : self.username,
+    "Password" : self.password
+  }
+  r = s.post(self.login_url,data)
+  print(r.cookies)
+  return s
+
+
+from test_case.loggin import testlogin
+import unittest
+ 
+'''这里导入之前的登陆模块，调用登陆模块的session，然后去执行其他接口'''
+s = testlogin().test_login()
+ 
+class testtransfer(unittest.TestCase):
+ def setUp(self):
+  self.transfer_url = "http://xxxxxxx/Transfer/DoTransferToGame"
+ def test_transfer(self):
+  url = self.transfer_url
+  data ={"Amount":xx,
+    "GamePlatform":"xxxx"
+    }
+  r = s.post(url,data)
+ 
+  print(r.text)
